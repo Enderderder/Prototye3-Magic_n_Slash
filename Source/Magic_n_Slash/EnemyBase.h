@@ -20,11 +20,18 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintNativeEvent, Category = "AIPerception | Character")
+	void GetPerceptionLocRot(FVector& Location, FRotator& Rotation) const;
+	void GetPerceptionLocRot_Implementation(FVector& Location, FRotator& Rotation) const;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// Called to get the eye view point of the character
+	virtual void GetActorEyesViewPoint(FVector& Location, FRotator& Rotation) const override;
 
 };

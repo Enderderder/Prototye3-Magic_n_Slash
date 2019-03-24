@@ -10,11 +10,24 @@ AEnemyBase::AEnemyBase()
 
 }
 
+void AEnemyBase::GetActorEyesViewPoint(FVector& Location, FRotator& Rotation) const
+{
+	/// Not using parent class implementation
+
+	GetPerceptionLocRot(Location, Rotation);
+}
+
 // Called when the game starts or when spawned
 void AEnemyBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void AEnemyBase::GetPerceptionLocRot_Implementation(FVector& Location, FRotator& Rotation) const
+{
+	Location = GetActorLocation() + FVector(0.0f, 0.0f, 80.0f);
+	Rotation = GetActorRotation();
 }
 
 // Called every frame
