@@ -20,6 +20,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// BlueprintNativeEvent that gets the perception location and rotation of the enemy
 	UFUNCTION(BlueprintNativeEvent, Category = "AIPerception | Character")
 	void GetPerceptionLocRot(FVector& Location, FRotator& Rotation) const;
 	void GetPerceptionLocRot_Implementation(FVector& Location, FRotator& Rotation) const;
