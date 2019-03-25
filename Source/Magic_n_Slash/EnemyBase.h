@@ -16,6 +16,9 @@ public:
 	// Sets default values for this character's properties
 	AEnemyBase();
 
+
+	virtual void ReceiveDamage_Implementation(float _value) override;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -34,5 +37,7 @@ public:
 
 	// Called to get the eye view point of the character
 	virtual void GetActorEyesViewPoint(FVector& Location, FRotator& Rotation) const override;
+
+
 
 };
