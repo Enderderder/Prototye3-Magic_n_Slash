@@ -16,8 +16,12 @@ public:
 	// Sets default values for this character's properties
 	AEnemyBase();
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: General")
+	float MaxHealth;
 
-	virtual void ReceiveDamage_Implementation(float _value) override;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat: General")
+	float CurrHealth;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -37,7 +41,6 @@ public:
 
 	// Called to get the eye view point of the character
 	virtual void GetActorEyesViewPoint(FVector& Location, FRotator& Rotation) const override;
-
 
 
 };
