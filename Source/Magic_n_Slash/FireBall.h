@@ -29,10 +29,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Get fire ball velocity for target location
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, meta = (DisplayName = "GetSuggestVelocity"))
-	void GetSuggestVelocity(FVector& resultVector, FVector _targetLocation);
-
 	/** Getter Section */
 
 	UFUNCTION(BlueprintCallable)
