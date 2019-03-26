@@ -21,6 +21,14 @@ public:
 	// Sets default values for this character's properties
 	AFlameBeast();
 
+	// Combat sensors
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: Sense")
+	float MeleeRange;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: Sense")
+	float FireBallRange;
+
 	// Range attack
 		// Fire ball class
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: Range")
