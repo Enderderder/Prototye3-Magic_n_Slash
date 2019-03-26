@@ -10,11 +10,6 @@ AEnemyBase::AEnemyBase()
 
 }
 
-void AEnemyBase::ReceiveDamage_Implementation(float _value)
-{
-	//throw std::logic_error("The method or operation is not implemented.");
-}
-
 void AEnemyBase::GetActorEyesViewPoint(FVector& Location, FRotator& Rotation) const
 {
 	/// Not using parent class implementation
@@ -27,6 +22,11 @@ void AEnemyBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Set default values
+	CurrHealth = MaxHealth;
+
+
+
 }
 
 void AEnemyBase::GetPerceptionLocRot_Implementation(FVector& Location, FRotator& Rotation) const
@@ -41,11 +41,3 @@ void AEnemyBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-
-// Called to bind functionality to input
-void AEnemyBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
-
