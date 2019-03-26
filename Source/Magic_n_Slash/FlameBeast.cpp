@@ -33,7 +33,7 @@ void AFlameBeast::LaunchFireBallToLocation(FVector TargetLocation)
 
 	FVector fireballVeloResult;
 	UGameplayStatics::SuggestProjectileVelocity_CustomArc(
-		this, fireballVeloResult, fireball->GetActorLocation(), TargetLocation, 0.0f, 0.6f);
+		this, fireballVeloResult, fireball->GetActorLocation(), TargetLocation, GetWorld()->GetGravityZ() * 3.0f, 0.6f);
 
 	fireball->GetSphere()->AddImpulse(fireballVeloResult, NAME_None, true);
 }
