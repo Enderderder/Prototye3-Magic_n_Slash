@@ -2,6 +2,8 @@
 
 #include "FlameBeast.h"
 
+#include "Components/SceneCaptureComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
@@ -11,7 +13,8 @@
 
 AFlameBeast::AFlameBeast()
 {
-
+	FireBallLauchPoint = CreateDefaultSubobject<USceneComponent>(TEXT("FireBallLauchPoint"));
+	FireBallLauchPoint->SetupAttachment(GetMesh());
 }
 
 void AFlameBeast::BeginPlay()
@@ -21,22 +24,18 @@ void AFlameBeast::BeginPlay()
 
 void AFlameBeast::LaunchFireBallToLocation(FVector TargetLocation)
 {
+	FActorSpawnParameters spawnParam;
+	spawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
 	// Spawn the fireball
 	AFireBall* fireball;
-	fireball = GetWorld()->SpawnActor<AFireBall>(FireBallClass, GetActorTransform());
+	fireball = GetWorld()->SpawnActor<AFireBall>(FireBallClass, FireBallLauchPoint->GetComponentTransform(), spawnParam);
 
 	FVector fireballVeloResult;
-	fireball->GetSuggestVelocity(fireballVeloResult, TargetLocation);
-	if (GEngine)
-	{
-		FString Msg = fireballVeloResult.ToString();
-		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Cyan, Msg);
-	}
+	UGameplayStatics::SuggestProjectileVelocity_CustomArc(
+		this, fireballVeloResult, fireball->GetActorLocation(), TargetLocation, 0.0f, 0.6f);
 
-	fireball->GetSphere()->AddImpulse(fireballVeloResult);
-
-	//fireball->GetSphere()->AddImpulse()
-
+	fireball->GetSphere()->AddImpulse(fireballVeloResult, NAME_None, true);
 }
 
 void AFlameBeast::Tick(float DeltaTime)

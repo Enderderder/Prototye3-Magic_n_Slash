@@ -9,7 +9,7 @@
 AFireBall::AFireBall()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 
 	SphereCollider = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollider"));
 	RootComponent = SphereCollider;
@@ -32,5 +32,5 @@ void AFireBall::BeginPlay()
 void AFireBall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	/// Tick is off
+
 }
