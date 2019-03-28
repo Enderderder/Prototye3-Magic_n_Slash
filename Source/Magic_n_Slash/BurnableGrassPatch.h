@@ -59,6 +59,12 @@ protected:
 	FVector GetRandomSize(float _minHeight, float _maxHeight, float _minThickness, float _maxThickness);
 
 
+
+
+
+
+
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
