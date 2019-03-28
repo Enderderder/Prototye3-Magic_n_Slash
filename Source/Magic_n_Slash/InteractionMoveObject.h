@@ -44,10 +44,10 @@ public:
 	class UCurveFloat* MoveFloatCurve;
 
 	// Declare delegate function to be binded with TimelineFloatReturn(float _value)
-	FOnTimelineFloat InterpFunction{};
+	class FOnTimelineFloat* InterpFunction;
 
 	// Declare deletgate function to be binded with OnTimelineFinished()
-	FOnTimelineEvent TimelineFinished{};
+	class FOnTimelineEvent* TimelineFinished;
 #pragma endregion
 
 protected:

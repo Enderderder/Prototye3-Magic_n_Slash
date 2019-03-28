@@ -22,13 +22,13 @@ void AInteractionMoveObject::BeginPlay()
 
 	MoveTimeLine = CreateDefaultSubobject<UTimelineComponent>(TEXT("Timeline"));
 
-	InterpFunction.BindFunction(this, FName("OnTimelineUpdate"));
-	TimelineFinished.BindFunction(this, FName("OnTimelineFinished"));
+	InterpFunction->BindUFunction(this, FName("OnTimelineUpdate"));
+	TimelineFinished->BindUFunction(this, FName("OnTimelineFinished"));
 
 	if (MoveFloatCurve)
 	{
-		MoveTimeLine->AddInterpFloat(MoveFloatCurve, InterpFunction, FName("Alpha"));
-		MoveTimeLine->SetTimelineFinishedFunc(TimelineFinished);
+		MoveTimeLine->AddInterpFloat(MoveFloatCurve, *InterpFunction, FName("Alpha"));
+		MoveTimeLine->SetTimelineFinishedFunc(*TimelineFinished);
 
 		startPosition = GetActorLocation();
 
