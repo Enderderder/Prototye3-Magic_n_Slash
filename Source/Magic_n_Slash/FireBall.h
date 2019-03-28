@@ -30,13 +30,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	/** Getter Section */
-
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE class USphereComponent* GetSphere() { return SphereCollider; }
-
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE class UParticleSystemComponent* GetParticleComponent() { return FireBallParticle; }
-
 	/** End Getter Section */
 
 
