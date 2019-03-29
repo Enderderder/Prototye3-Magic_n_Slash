@@ -16,6 +16,9 @@ public:
 	// Sets default values for this character's properties
 	AEnemyBase();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Animation")
+	class UAnimInstance* AnimInstance;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: General")
 	float MaxHealth;
 
@@ -23,7 +26,7 @@ public:
 	float CurrHealth;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat: Status")
-	bool bStuned;
+	bool bStaggered;
 
 
 protected:

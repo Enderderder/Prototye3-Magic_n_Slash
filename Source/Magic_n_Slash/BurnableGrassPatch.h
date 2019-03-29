@@ -58,13 +58,6 @@ protected:
 	// Called to get a random size of the grass
 	FVector GetRandomSize(float _minHeight, float _maxHeight, float _minThickness, float _maxThickness);
 
-
-
-
-
-
-
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

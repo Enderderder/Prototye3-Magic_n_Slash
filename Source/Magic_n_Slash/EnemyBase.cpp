@@ -24,6 +24,7 @@ void AEnemyBase::BeginPlay()
 	
 	// Set default values
 	CurrHealth = MaxHealth;
+	bStaggered = false;
 
 }
 
