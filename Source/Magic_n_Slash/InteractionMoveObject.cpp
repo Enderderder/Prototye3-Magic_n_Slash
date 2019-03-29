@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "InteractionMoveObject.h"
-#include "Runtime/Engine/Classes/Components/TimelineComponent.h"
 #include "InteractableObject.h"
 
 // Sets default values
@@ -17,27 +16,7 @@ void AInteractionMoveObject::BeginPlay()
 {
 	Super::BeginPlay();
 
-#pragma region SetupMoveTimeline
-	PrimaryActorTick.bCanEverTick = true;
 
-	MoveTimeLine = CreateDefaultSubobject<UTimelineComponent>(TEXT("Timeline"));
-
-	InterpFunction->BindUFunction(this, FName("OnTimelineUpdate"));
-	TimelineFinished->BindUFunction(this, FName("OnTimelineFinished"));
-
-	if (MoveFloatCurve)
-	{
-		MoveTimeLine->AddInterpFloat(MoveFloatCurve, *InterpFunction, FName("Alpha"));
-		MoveTimeLine->SetTimelineFinishedFunc(*TimelineFinished);
-
-		startPosition = GetActorLocation();
-
-		SetTimelineValues();
-
-		MoveTimeLine->SetLooping(false);
-		MoveTimeLine->SetIgnoreTimeDilation(true);
-	}
-#pragma endregion
 }
 
 // Called every frame
@@ -50,34 +29,25 @@ void AInteractionMoveObject::Tick(float DeltaTime)
 void AInteractionMoveObject::MoveToOffsetPosition()
 {
 	Receive_MoveToOffsetPosition();
-
-	if (!IsActivated)
-	{
-		IsActivated = true;
-		MoveTimeLine->Play();
-	}
 }
 
 void AInteractionMoveObject::MoveToOriginalPosition()
 {
 	Recieve_MoveToOriginalPosition();
-
-	if (IsActivated)
-	{
-		IsActivated = false;
-		MoveTimeLine->Reverse();
-	}
 }
 
 void AInteractionMoveObject::CheckIsActivated()
 {
 	ConditionsMet = true;
 	
-	for (const TPair<AInteractableObject*, bool>& pair : InteractConditions)
+	for (const TPair<AInteractionMoveObject*, bool>& pair : InteractConditions)
 	{
-		if (pair.Key->IsActivated != pair.Value)
+		if (pair.Key != nullptr)
 		{
-			ConditionsMet = false;
+			if (pair.Key->InteractableIsActive != pair.Value)
+			{
+				ConditionsMet = false;
+			}
 		}
 	}
 
@@ -89,21 +59,4 @@ void AInteractionMoveObject::CheckIsActivated()
 	{
 		MoveToOriginalPosition();
 	}
-}
-
-void AInteractionMoveObject::SetTimelineValues()
-{
-	endPosition = startPosition + MoveToOffset;
-
-	MoveTimeLine->SetPlayRate(1.0f / MoveTime);
-}
-
-void AInteractionMoveObject::OnTimelineUpdate(float _value)
-{
-	SetActorLocation(FMath::Lerp(startPosition, endPosition, _value));
-}
-
-void AInteractionMoveObject::OnTimelineFinished()
-{
-
 }

@@ -19,36 +19,22 @@ public:
 	FVector MoveToOffset;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
-	TMap<class AInteractableObject*, bool> InteractConditions;
+	TMap<class AInteractionMoveObject*, bool> InteractConditions;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Moving")
 	bool ConditionsMet;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Moving")
+	bool IsUseable;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Interact")
+	bool InteractableIsActive;
+
 	UPROPERTY(BlueprintReadWrite, Category = "Moving")
 	bool IsActivated;
 
-	UPROPERTY(EditAnywhere, Category = "Moving")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
 	float MoveTime;
-
-#pragma region MoveTimelineVariables
-	UPROPERTY()
-	FVector startPosition;
-
-	UPROPERTY()
-	FVector endPosition;
-
-	UPROPERTY()
-	class UTimelineComponent* MoveTimeLine;
-
-	UPROPERTY(EditAnywhere, Category = "Moving: Timeline")
-	class UCurveFloat* MoveFloatCurve;
-
-	// Declare delegate function to be binded with TimelineFloatReturn(float _value)
-	class FOnTimelineFloat* InterpFunction;
-
-	// Declare deletgate function to be binded with OnTimelineFinished()
-	class FOnTimelineEvent* TimelineFinished;
-#pragma endregion
 
 protected:
 	// Called when the game starts or when spawned
@@ -70,15 +56,4 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void CheckIsActivated();
-
-#pragma region MoveTimelineFunctions
-	UFUNCTION(BlueprintCallable)
-	void SetTimelineValues();
-
-	UFUNCTION()
-	void OnTimelineUpdate(float _value);
-
-	UFUNCTION()
-	void OnTimelineFinished();
-#pragma endregion
 };
