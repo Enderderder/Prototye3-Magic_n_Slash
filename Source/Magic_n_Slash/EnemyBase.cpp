@@ -25,8 +25,6 @@ void AEnemyBase::BeginPlay()
 	// Set default values
 	CurrHealth = MaxHealth;
 
-
-
 }
 
 void AEnemyBase::GetPerceptionLocRot_Implementation(FVector& Location, FRotator& Rotation) const

@@ -22,6 +22,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat: General")
 	float CurrHealth;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat: Status")
+	bool bStuned;
+
 
 protected:
 	// Called when the game starts or when spawned

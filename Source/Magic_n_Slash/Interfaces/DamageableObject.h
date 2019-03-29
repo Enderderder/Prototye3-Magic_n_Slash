@@ -26,4 +26,6 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void ReceiveDamage(float _value);
 	virtual void ReceiveDamage_Implementation(float _value);
+
+	
 };
