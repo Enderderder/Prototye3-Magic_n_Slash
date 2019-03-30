@@ -61,14 +61,18 @@ void AInteractionMoveObject::CheckIsActivated()
 	}
 }
 
-FVector AInteractionMoveObject::LerpMovePos(FVector _startPos, float _alpha)
+void AInteractionMoveObject::LerpMoveTransform(FTransform _startTransform, float _alpha, FTransform& _updatedTransform)
 {
 	if (IsCurrentPosStart)
 	{
-		return (FMath::Lerp(_startPos, MoveToOffset, _alpha));
+		_updatedTransform.SetLocation(FMath::Lerp(_startTransform.GetLocation(), MoveToOffset.GetLocation(), _alpha));
+		_updatedTransform.SetRotation(FMath::Lerp(_startTransform.GetRotation(), MoveToOffset.GetRotation(), _alpha));
+		_updatedTransform.SetScale3D(FMath::Lerp(_startTransform.GetScale3D(), MoveToOffset.GetScale3D(), _alpha));
 	}
 	else
 	{
-		return (FMath::Lerp(MoveToOffset, _startPos, _alpha));
+		_updatedTransform.SetLocation(FMath::Lerp(MoveToOffset.GetLocation(), _startTransform.GetLocation(), _alpha));
+		_updatedTransform.SetRotation(FMath::Lerp(MoveToOffset.GetRotation(), _startTransform.GetRotation(), _alpha));
+		_updatedTransform.SetScale3D(FMath::Lerp(MoveToOffset.GetScale3D(), _startTransform.GetScale3D(), _alpha));
 	}
 }
