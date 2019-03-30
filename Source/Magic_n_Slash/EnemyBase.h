@@ -23,7 +23,7 @@ public:
 	float CurrHealth;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat: Status")
-	bool bStuned;
+	bool bStaggered;
 
 
 protected:
