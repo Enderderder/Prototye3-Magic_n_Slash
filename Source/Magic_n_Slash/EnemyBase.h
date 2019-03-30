@@ -12,6 +12,12 @@ class MAGIC_N_SLASH_API AEnemyBase : public ACharacter, public IDamageableObject
 {
 	GENERATED_BODY()
 
+private:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UStaticMeshComponent* TargetingIndicator;
+	
+	
 public:
 	// Sets default values for this character's properties
 	AEnemyBase();

@@ -14,8 +14,14 @@ class MAGIC_N_SLASH_API AFlameBeast : public AEnemyBase
 {
 	GENERATED_BODY()
 
+private:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UBoxComponent* MeleeHitBox;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class USceneComponent* FireBallLauchPoint;
+
 
 public:
 	// Sets default values for this character's properties

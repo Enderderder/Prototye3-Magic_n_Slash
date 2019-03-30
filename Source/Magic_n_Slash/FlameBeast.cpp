@@ -3,6 +3,7 @@
 #include "FlameBeast.h"
 
 #include "Components/SceneCaptureComponent.h"
+#include "Components/BoxComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 
 #include "Engine/World.h"
@@ -13,8 +14,11 @@
 
 AFlameBeast::AFlameBeast()
 {
+	MeleeHitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("MeleeHitBox"));
+	MeleeHitBox->SetupAttachment(GetMesh(), TEXT("FlameChargeSocket"));
+
 	FireBallLauchPoint = CreateDefaultSubobject<USceneComponent>(TEXT("FireBallLauchPoint"));
-	FireBallLauchPoint->SetupAttachment(GetMesh());
+	FireBallLauchPoint->SetupAttachment(GetMesh(), TEXT("FlameChargeSocket"));
 }
 
 void AFlameBeast::BeginPlay()
