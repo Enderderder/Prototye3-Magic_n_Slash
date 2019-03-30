@@ -60,3 +60,15 @@ void AInteractionMoveObject::CheckIsActivated()
 		MoveToOriginalPosition();
 	}
 }
+
+FVector AInteractionMoveObject::LerpMovePos(FVector _startPos, float _alpha)
+{
+	if (IsCurrentPosStart)
+	{
+		return (FMath::Lerp(_startPos, MoveToOffset, _alpha));
+	}
+	else
+	{
+		return (FMath::Lerp(MoveToOffset, _startPos, _alpha));
+	}
+}

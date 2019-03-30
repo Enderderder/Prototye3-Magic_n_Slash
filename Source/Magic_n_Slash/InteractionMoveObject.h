@@ -34,6 +34,9 @@ public:
 	bool IsActivated;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
+	bool IsCurrentPosStart;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
 	float MoveTime;
 
 protected:
@@ -56,4 +59,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void CheckIsActivated();
+
+	UFUNCTION(BlueprintCallable)
+	FVector LerpMovePos(FVector _startPos, float _alpha);
 };
