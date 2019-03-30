@@ -24,8 +24,8 @@ class MAGIC_N_SLASH_API IDamageableObject
 public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void ReceiveDamage(float _value);
-	virtual void ReceiveDamage_Implementation(float _value);
+	void ReceiveDamage(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower);
+	virtual void ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower);
 
 	
 };

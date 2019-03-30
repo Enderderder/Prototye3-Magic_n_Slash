@@ -4,7 +4,7 @@
 
 // Add default functionality here for any IDamageableObject functions that are not pure virtual.
 
-void IDamageableObject::ReceiveDamage_Implementation(float _value)
+void IDamageableObject::ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower)
 {
 
 }
