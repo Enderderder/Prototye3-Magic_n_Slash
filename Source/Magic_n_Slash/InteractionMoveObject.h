@@ -16,7 +16,7 @@ public:
 	AInteractionMoveObject();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
-	FVector MoveToOffset;
+	FTransform MoveToOffset;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
 	TMap<class AInteractionMoveObject*, bool> InteractConditions;
@@ -61,5 +61,6 @@ public:
 	void CheckIsActivated();
 
 	UFUNCTION(BlueprintCallable)
-	FVector LerpMovePos(FVector _startPos, float _alpha);
+	void LerpMoveTransform(FTransform _startTransform, float _alpha, FTransform& _updatedTransform);
+
 };
