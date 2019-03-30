@@ -24,22 +24,28 @@ AFlameBeast::AFlameBeast()
 void AFlameBeast::BeginPlay()
 {
 	Super::BeginPlay();
+
+	MeleeHitBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 void AFlameBeast::LaunchFireBallToLocation(FVector TargetLocation)
 {
 	FActorSpawnParameters spawnParam;
-	spawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+	spawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 	// Spawn the fireball
 	AFireBall* fireball;
 	fireball = GetWorld()->SpawnActor<AFireBall>(FireBallClass, FireBallLauchPoint->GetComponentTransform(), spawnParam);
 
-	FVector fireballVeloResult;
-	UGameplayStatics::SuggestProjectileVelocity_CustomArc(
-		this, fireballVeloResult, fireball->GetActorLocation(), TargetLocation, GetWorld()->GetGravityZ() * 3.0f, 0.6f);
+	// Check if the fire ball that we just spawn still valid
+	if (fireball->IsValidLowLevel())
+	{
+		FVector fireballVeloResult;
+		UGameplayStatics::SuggestProjectileVelocity_CustomArc(
+			this, fireballVeloResult, fireball->GetActorLocation(), TargetLocation, GetWorld()->GetGravityZ() * 3.0f, 0.6f);
 
-	fireball->GetSphere()->AddImpulse(fireballVeloResult, NAME_None, true);
+		fireball->GetSphere()->AddImpulse(fireballVeloResult, NAME_None, true);
+	}
 }
 
 void AFlameBeast::Tick(float DeltaTime)
