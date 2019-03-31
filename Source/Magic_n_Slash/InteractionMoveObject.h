@@ -39,6 +39,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
 	float MoveTime;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
+	bool LockOnMoveEnd;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Moving")
+	bool IsMovementLocked;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

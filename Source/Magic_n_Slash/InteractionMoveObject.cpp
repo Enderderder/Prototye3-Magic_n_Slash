@@ -16,7 +16,7 @@ void AInteractionMoveObject::BeginPlay()
 {
 	Super::BeginPlay();
 
-
+	IsMovementLocked = false;
 }
 
 // Called every frame
@@ -51,13 +51,16 @@ void AInteractionMoveObject::CheckIsActivated()
 		}
 	}
 
-	if (ConditionsMet)
+	if (!IsMovementLocked)
 	{
-		MoveToOffsetPosition();
-	}
-	else
-	{
-		MoveToOriginalPosition();
+		if (ConditionsMet)
+		{
+			MoveToOffsetPosition();
+		}
+		else
+		{
+			MoveToOriginalPosition();
+		}
 	}
 }
 
