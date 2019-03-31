@@ -42,7 +42,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
 	bool LockOnMoveEnd;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Moving")
 	bool IsMovementLocked;
 
 protected:
