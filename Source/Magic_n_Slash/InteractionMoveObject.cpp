@@ -36,7 +36,7 @@ void AInteractionMoveObject::MoveToOriginalPosition()
 	Recieve_MoveToOriginalPosition();
 }
 
-void AInteractionMoveObject::CheckIsActivated()
+void AInteractionMoveObject::CheckIsActivated(TMap<AInteractionMoveObject*, bool> InteractConditions)
 {
 	ConditionsMet = true;
 	

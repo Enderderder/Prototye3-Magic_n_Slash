@@ -4,6 +4,7 @@
 
 #include "Components/StaticMeshComponent.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Components/WidgetComponent.h"
 
 // Sets default values
 AEnemyBase::AEnemyBase()
@@ -13,6 +14,11 @@ AEnemyBase::AEnemyBase()
 
 	TargetingIndicator = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TargetingIndicator"));
 	TargetingIndicator->SetupAttachment(GetMesh());
+
+	HealthIndicator = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthIndicator"));
+	HealthIndicator->SetupAttachment(RootComponent);
+	HealthIndicator->SetGenerateOverlapEvents(false);
+	HealthIndicator->SetWidgetSpace(EWidgetSpace::Screen);
 
 }
 
@@ -30,7 +36,11 @@ void AEnemyBase::BeginPlay()
 	
 	// Set default values
 	CurrHealth = MaxHealth;
+	bAlive = true;
 	bStaggered = false;
+
+
+	
 
 }
 
@@ -38,6 +48,28 @@ void AEnemyBase::GetPerceptionLocRot_Implementation(FVector& Location, FRotator&
 {
 	Location = GetActorLocation() + FVector(0.0f, 0.0f, 80.0f);
 	Rotation = GetActorRotation();
+}
+
+void AEnemyBase::KillObject()
+{
+
+
+
+	Receive_OnObjectKilled();
+}
+
+void AEnemyBase::OnTargeted()
+{
+	TargetingIndicator->SetVisibility(true);
+
+	Receive_OnTargeted();
+}
+
+void AEnemyBase::OnUnTargeted()
+{
+	TargetingIndicator->SetVisibility(false);
+
+	Receive_OnUnTargeted();
 }
 
 // Called every frame
