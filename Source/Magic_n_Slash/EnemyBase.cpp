@@ -57,11 +57,15 @@ void AEnemyBase::KillObject()
 
 void AEnemyBase::OnTargeted()
 {
+	TargetingIndicator->SetVisibility(true);
+
 	Receive_OnTargeted();
 }
 
 void AEnemyBase::OnUnTargeted()
 {
+	TargetingIndicator->SetVisibility(false);
+
 	Receive_OnUnTargeted();
 }
 
