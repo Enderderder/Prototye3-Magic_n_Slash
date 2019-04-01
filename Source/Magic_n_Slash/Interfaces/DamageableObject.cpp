@@ -6,5 +6,5 @@
 
 void IDamageableObject::ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower)
 {
-
+	// Nothing in the interface
 }
