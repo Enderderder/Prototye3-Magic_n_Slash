@@ -18,9 +18,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
 	FTransform MoveToOffset;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving")
-	TMap<class AInteractionMoveObject*, bool> InteractConditions;
-
 	UPROPERTY(BlueprintReadWrite, Category = "Moving")
 	bool ConditionsMet;
 
@@ -55,16 +52,16 @@ public:
 
 	UFUNCTION()
 	void MoveToOffsetPosition();
-	UFUNCTION(BlueprintImplementableEvent, Category = "Moving", meta = (DisplayName = "OnMoveToOffsetPosition"))
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Moving", meta = (DisplayName = "OnMoveToOffsetPosition"))
 	void Receive_MoveToOffsetPosition();
 
 	UFUNCTION()
 	void MoveToOriginalPosition();
-	UFUNCTION(BlueprintImplementableEvent, Category = "Moving", meta = (DisplayName = "OnMoveToOriginPosition"))
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Moving", meta = (DisplayName = "OnMoveToOriginPosition"))
 	void Recieve_MoveToOriginalPosition();
 
 	UFUNCTION(BlueprintCallable)
-	void CheckIsActivated();
+	void CheckIsActivated(TMap<class AInteractionMoveObject*, bool> InteractConditions);
 
 	UFUNCTION(BlueprintCallable)
 	void LerpMoveTransform(FTransform _startTransform, float _alpha, FTransform& _updatedTransform);
