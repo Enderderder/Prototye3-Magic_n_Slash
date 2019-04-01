@@ -55,6 +55,20 @@ void AEnemyBase::KillObject()
 	Receive_OnObjectKilled();
 }
 
+void AEnemyBase::OnTargeted()
+{
+	TargetingIndicator->SetVisibility(true);
+
+	Receive_OnTargeted();
+}
+
+void AEnemyBase::OnUnTargeted()
+{
+	TargetingIndicator->SetVisibility(false);
+
+	Receive_OnUnTargeted();
+}
+
 // Called every frame
 void AEnemyBase::Tick(float DeltaTime)
 {

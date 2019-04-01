@@ -51,8 +51,6 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnObjectKilled"))
 	void Receive_OnObjectKilled();
 
-
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -60,5 +58,13 @@ public:
 	// Called to get the eye view point of the character
 	virtual void GetActorEyesViewPoint(FVector& Location, FRotator& Rotation) const override;
 
+	UFUNCTION(BlueprintCallable)
+	virtual void OnTargeted();
+	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnTargeted"))
+	void Receive_OnTargeted();
 
+	UFUNCTION(BlueprintCallable)
+	virtual void OnUnTargeted();
+	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnUnTargeted"))
+	void Receive_OnUnTargeted();
 };
