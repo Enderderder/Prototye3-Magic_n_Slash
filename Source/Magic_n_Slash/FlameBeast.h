@@ -29,15 +29,15 @@ public:
 
 	// Combat sensors
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: Sense")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | Sense")
 	float MeleeRange;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: Sense")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | Sense")
 	float FireBallRange;
 
 	// Range attack
 		// Fire ball class
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: Range")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | Range")
 	TSubclassOf<class AFireBall> FireBallClass;
 
 protected:
@@ -45,7 +45,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	// Call the Shoot Fire ball with target lock
-	UFUNCTION(BlueprintCallable, Category = "Combat: Range")
+	UFUNCTION(BlueprintCallable, Category = "Combat | Range")
 	void LaunchFireBallToLocation(FVector TargetLocation);
 
 public:

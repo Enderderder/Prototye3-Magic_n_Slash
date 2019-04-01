@@ -27,5 +27,4 @@ public:
 	void ReceiveDamage(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower);
 	virtual void ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower);
 
-	
 };

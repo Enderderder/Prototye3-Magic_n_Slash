@@ -17,19 +17,24 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* TargetingIndicator;
 	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UWidgetComponent* HealthIndicator;
 	
 public:
 	// Sets default values for this character's properties
 	AEnemyBase();
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: General")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | General")
 	float MaxHealth;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat: General")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | General")
 	float CurrHealth;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat: Status")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
 	bool bStaggered;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
+	bool bAlive;
 
 
 protected:
@@ -40,6 +45,13 @@ protected:
 	UFUNCTION(BlueprintNativeEvent, Category = "AIPerception | Character")
 	void GetPerceptionLocRot(FVector& Location, FRotator& Rotation) const;
 	void GetPerceptionLocRot_Implementation(FVector& Location, FRotator& Rotation) const;
+
+	UFUNCTION(BlueprintCallable)
+	virtual void KillObject();
+	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnObjectKilled"))
+	void Receive_OnObjectKilled();
+
+
 
 public:	
 	// Called every frame
