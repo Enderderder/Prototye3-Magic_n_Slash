@@ -55,6 +55,16 @@ void AEnemyBase::KillObject()
 	Receive_OnObjectKilled();
 }
 
+void AEnemyBase::OnTargeted()
+{
+	Receive_OnTargeted();
+}
+
+void AEnemyBase::OnUnTargeted()
+{
+	Receive_OnUnTargeted();
+}
+
 // Called every frame
 void AEnemyBase::Tick(float DeltaTime)
 {
