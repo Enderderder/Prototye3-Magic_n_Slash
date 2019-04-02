@@ -38,6 +38,8 @@ void AEnemyBase::BeginPlay()
 	CurrHealth = MaxHealth;
 	bAlive = true;
 	bStaggered = false;
+	bStaggerImmuned = false;
+	bCanMove = true;
 }
 
 void AEnemyBase::GetPerceptionLocRot_Implementation(FVector& Location, FRotator& Rotation) const
