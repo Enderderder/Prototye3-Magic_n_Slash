@@ -36,7 +36,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
 	bool bAlive;
 
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

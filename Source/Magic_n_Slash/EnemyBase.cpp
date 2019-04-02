@@ -39,6 +39,9 @@ void AEnemyBase::BeginPlay()
 	bAlive = true;
 	bStaggered = false;
 
+
+	
+
 }
 
 void AEnemyBase::GetPerceptionLocRot_Implementation(FVector& Location, FRotator& Rotation) const
