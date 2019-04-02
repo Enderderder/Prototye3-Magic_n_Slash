@@ -16,7 +16,7 @@ void AInteractionMoveObject::BeginPlay()
 {
 	Super::BeginPlay();
 
-
+	IsMovementLocked = false;
 }
 
 // Called every frame
@@ -36,7 +36,7 @@ void AInteractionMoveObject::MoveToOriginalPosition()
 	Recieve_MoveToOriginalPosition();
 }
 
-void AInteractionMoveObject::CheckIsActivated()
+void AInteractionMoveObject::CheckIsActivated(TMap<AInteractionMoveObject*, bool> InteractConditions)
 {
 	ConditionsMet = true;
 	
@@ -51,13 +51,16 @@ void AInteractionMoveObject::CheckIsActivated()
 		}
 	}
 
-	if (ConditionsMet)
+	if (!IsMovementLocked)
 	{
-		MoveToOffsetPosition();
-	}
-	else
-	{
-		MoveToOriginalPosition();
+		if (ConditionsMet)
+		{
+			MoveToOffsetPosition();
+		}
+		else
+		{
+			MoveToOriginalPosition();
+		}
 	}
 }
 

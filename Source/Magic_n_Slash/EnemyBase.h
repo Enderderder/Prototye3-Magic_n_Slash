@@ -17,19 +17,24 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* TargetingIndicator;
 	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UWidgetComponent* HealthIndicator;
 	
 public:
 	// Sets default values for this character's properties
 	AEnemyBase();
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat: General")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | General")
 	float MaxHealth;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat: General")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | General")
 	float CurrHealth;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat: Status")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
 	bool bStaggered;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
+	bool bAlive;
 
 
 protected:
@@ -41,6 +46,11 @@ protected:
 	void GetPerceptionLocRot(FVector& Location, FRotator& Rotation) const;
 	void GetPerceptionLocRot_Implementation(FVector& Location, FRotator& Rotation) const;
 
+	UFUNCTION(BlueprintCallable)
+	virtual void KillObject();
+	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnObjectKilled"))
+	void Receive_OnObjectKilled();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -48,5 +58,13 @@ public:
 	// Called to get the eye view point of the character
 	virtual void GetActorEyesViewPoint(FVector& Location, FRotator& Rotation) const override;
 
+	UFUNCTION(BlueprintCallable)
+	virtual void OnTargeted();
+	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnTargeted"))
+	void Receive_OnTargeted();
 
+	UFUNCTION(BlueprintCallable)
+	virtual void OnUnTargeted();
+	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnUnTargeted"))
+	void Receive_OnUnTargeted();
 };
