@@ -27,14 +27,20 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | General")
 	float MaxHealth;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | General")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
 	float CurrHealth;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
 	bool bStaggered;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
+	bool bStaggerImmuned;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
 	bool bAlive;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat | Status")
+	bool bCanMove;
 
 protected:
 	// Called when the game starts or when spawned
