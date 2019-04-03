@@ -15,8 +15,6 @@ AInteractionMoveObject::AInteractionMoveObject()
 void AInteractionMoveObject::BeginPlay()
 {
 	Super::BeginPlay();
-
-	IsMovementLocked = false;
 }
 
 // Called every frame
@@ -38,21 +36,21 @@ void AInteractionMoveObject::MoveToOriginalPosition()
 
 void AInteractionMoveObject::CheckIsActivated(TMap<AInteractionMoveObject*, bool> InteractConditions)
 {
-	ConditionsMet = true;
-	
-	for (const TPair<AInteractionMoveObject*, bool>& pair : InteractConditions)
-	{
-		if (pair.Key != nullptr)
-		{
-			if (pair.Key->InteractableIsActive != pair.Value)
-			{
-				ConditionsMet = false;
-			}
-		}
-	}
-
 	if (!IsMovementLocked)
 	{
+		ConditionsMet = true;
+
+		for (const TPair<AInteractionMoveObject*, bool>& pair : InteractConditions)
+		{
+			if (pair.Key != nullptr)
+			{
+				if (pair.Key->InteractableIsActive != pair.Value)
+				{
+					ConditionsMet = false;
+				}
+			}
+		}
+
 		if (ConditionsMet)
 		{
 			MoveToOffsetPosition();
