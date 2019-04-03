@@ -2,9 +2,13 @@
 
 #include "TankBeast.h"
 
+#include "Components/BoxComponent.h"
+#include "Components/SkeletalMeshComponent.h"
+
 ATankBeast::ATankBeast()
 {
-
+	MeleeHitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("MeleeHitBox"));
+	MeleeHitBox->SetupAttachment(GetMesh(), TEXT("WeaponSocket"));
 }
 
 void ATankBeast::BeginPlay()

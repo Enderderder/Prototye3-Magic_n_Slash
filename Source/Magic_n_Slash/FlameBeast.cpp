@@ -2,7 +2,6 @@
 
 #include "FlameBeast.h"
 
-#include "Components/SceneCaptureComponent.h"
 #include "Components/BoxComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 
