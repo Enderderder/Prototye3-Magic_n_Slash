@@ -50,12 +50,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void MoveToOffsetPosition();
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Moving", meta = (DisplayName = "OnMoveToOffsetPosition"))
 	void Receive_MoveToOffsetPosition();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void MoveToOriginalPosition();
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Moving", meta = (DisplayName = "OnMoveToOriginPosition"))
 	void Recieve_MoveToOriginalPosition();
