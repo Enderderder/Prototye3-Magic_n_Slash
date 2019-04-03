@@ -14,6 +14,10 @@ class MAGIC_N_SLASH_API ATankBeast : public AEnemyBase
 {
 	GENERATED_BODY()
 
+private:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UBoxComponent* MeleeHitBox;
 
 public:
 	// Sets default values for this character's properties
