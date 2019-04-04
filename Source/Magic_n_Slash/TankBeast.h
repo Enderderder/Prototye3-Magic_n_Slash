@@ -28,6 +28,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | Sense")
 	float MeleeRange;
 
+	// Melee attack
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | General")
+	float MeleeDamage;
+
 protected:
 	// Called when the game starts or when spawnesd
 	virtual void BeginPlay() override;
