@@ -6,6 +6,8 @@
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 
+#include "PlayerCharacter.h"
+
 // Sets default values
 ASimpleCheckPoint::ASimpleCheckPoint()
 {
@@ -27,6 +29,14 @@ void ASimpleCheckPoint::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ASimpleCheckPoint::OnCheckPointTriggered(APlayerCharacter* _player)
+{
+
+
+	// Blueprint implementation
+	Receive_OnCheckPointTriggered(_player);
 }
 
 // Called every frame

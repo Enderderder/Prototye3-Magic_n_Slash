@@ -5,6 +5,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/WidgetComponent.h"
+#include "Classes/BehaviorTree/BlackboardComponent.h"
+#include "Classes/AIController.h"
 
 // Sets default values
 AEnemyBase::AEnemyBase()
@@ -20,6 +22,18 @@ AEnemyBase::AEnemyBase()
 	HealthIndicator->SetGenerateOverlapEvents(false);
 	HealthIndicator->SetWidgetSpace(EWidgetSpace::Screen);
 
+}
+
+void AEnemyBase::ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower)
+{
+	AAIController* aiCon = Cast<AAIController>(GetController());
+	if (aiCon->IsValidLowLevel())
+	{
+		aiCon->GetBlackboardComponent()->SetValueAsBool(TEXT("InCombat"), true);
+	}
+
+	// Blueprint implementation
+	Receive_EnemyReceiveDamage(_value, _bApplyLaunch, _hitDirection, _hitPower);
 }
 
 void AEnemyBase::GetActorEyesViewPoint(FVector& Location, FRotator& Rotation) const

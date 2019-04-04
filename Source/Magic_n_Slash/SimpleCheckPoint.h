@@ -27,11 +27,16 @@ public:
 	ASimpleCheckPoint();
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Instance Config")
-	int32 CheckPointIndex;
+	int CheckPointIndex;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UFUNCTION(BlueprintCallable)
+	virtual void OnCheckPointTriggered(class APlayerCharacter* _player);
+	UFUNCTION(BlueprintImplementableEvent, Category = "CheckPoint", meta = (DisplayName = "OnCheckPointTriggered"))
+	void Receive_OnCheckPointTriggered(class APlayerCharacter* _player);
 
 public:	
 	// Called every frame
