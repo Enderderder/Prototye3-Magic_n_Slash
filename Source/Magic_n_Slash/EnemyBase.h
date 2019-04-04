@@ -60,8 +60,6 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "DamageableObject", meta = (DisplayName = "OnEnemyReceiveDamage"))
 	void Receive_EnemyReceiveDamage(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower);
 
-
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
