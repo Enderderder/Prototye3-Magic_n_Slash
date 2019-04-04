@@ -40,6 +40,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | Range")
 	TSubclassOf<class AFireBall> FireBallClass;
 
+	// Melee attack
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | General")
+	float MeleeDamage;
+
 protected:
 	// Called when the game starts or when spawnesd
 	virtual void BeginPlay() override;
