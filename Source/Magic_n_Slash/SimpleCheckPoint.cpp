@@ -6,7 +6,10 @@
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 
+#include "Kismet/GameplayStatics.h"
+
 #include "PlayerCharacter.h"
+#include "GodaiGamemode.h"
 
 // Sets default values
 ASimpleCheckPoint::ASimpleCheckPoint()
@@ -28,15 +31,22 @@ ASimpleCheckPoint::ASimpleCheckPoint()
 void ASimpleCheckPoint::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 void ASimpleCheckPoint::OnCheckPointTriggered(APlayerCharacter* _player)
 {
+	AGodaiGamemode* gamemode = Cast<AGodaiGamemode>(UGameplayStatics::GetGameMode(this));
+	if (gamemode->IsValidLowLevel())
+	{
+		if (gamemode->CurrentCheckPointIndex + 1 == CheckPointIndex)
+		{
+			gamemode->CurrentCheckPointIndex = CheckPointIndex;
 
-
-	// Blueprint implementation
-	Receive_OnCheckPointTriggered(_player);
+			// Blueprint implementation
+			Receive_OnCheckPointTriggered(_player);
+		}
+	}
 }
 
 // Called every frame

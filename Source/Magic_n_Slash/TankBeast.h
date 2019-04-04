@@ -32,6 +32,11 @@ protected:
 	// Called when the game starts or when spawnesd
 	virtual void BeginPlay() override;
 
+	/** EnemyBase Interface */
+	virtual void ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower) override;
+	/** Interface End */
+
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

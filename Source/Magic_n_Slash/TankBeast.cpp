@@ -15,6 +15,13 @@ void ATankBeast::BeginPlay()
 {
 	Super::BeginPlay();
 
+	MeleeHitBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+}
+
+void ATankBeast::ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower)
+{
+	Super::ReceiveDamage_Implementation(_value, _bApplyLaunch, _hitDirection, _hitPower);
 }
 
 void ATankBeast::Tick(float DeltaTime)
