@@ -31,7 +31,10 @@ void AEnemyBase::ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, 
 	AAIController* aiCon = Cast<AAIController>(GetController());
 	if (aiCon->IsValidLowLevel())
 	{
-		aiCon->GetBlackboardComponent()->SetValueAsBool(TEXT("InCombat"), true);
+		if (UBlackboardComponent* blackboard = aiCon->GetBlackboardComponent())
+		{
+			blackboard->SetValueAsBool(TEXT("InCombat"), true);
+		}
 	}
 
 	// Blueprint implementation
@@ -67,6 +70,16 @@ void AEnemyBase::GetPerceptionLocRot_Implementation(FVector& Location, FRotator&
 void AEnemyBase::KillObject()
 {
 	bAlive = false;
+	HealthIndicator->SetVisibility(false);
+
+	AAIController* aiCon = Cast<AAIController>(GetController());
+	if (aiCon->IsValidLowLevel())
+	{
+		if (UBlackboardComponent* blackboard = aiCon->GetBlackboardComponent())
+		{
+			blackboard->SetValueAsBool(TEXT("Alive"), false);
+		}
+	}
 
 	Receive_OnObjectKilled();
 }
