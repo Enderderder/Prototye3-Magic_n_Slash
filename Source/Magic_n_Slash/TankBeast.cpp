@@ -9,6 +9,8 @@ ATankBeast::ATankBeast()
 {
 	MeleeHitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("MeleeHitBox"));
 	MeleeHitBox->SetupAttachment(GetMesh(), TEXT("WeaponSocket"));
+
+	MeleeDamage = 40.0f;
 }
 
 void ATankBeast::BeginPlay()
@@ -16,7 +18,6 @@ void ATankBeast::BeginPlay()
 	Super::BeginPlay();
 
 	MeleeHitBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
 }
 
 void ATankBeast::ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower)

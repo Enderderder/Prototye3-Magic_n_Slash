@@ -29,7 +29,7 @@ public:
 	float MeleeRange;
 
 	// Melee attack
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | General")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat | Config")
 	float MeleeDamage;
 
 protected:
