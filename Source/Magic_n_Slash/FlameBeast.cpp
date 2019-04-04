@@ -47,6 +47,13 @@ void AFlameBeast::LaunchFireBallToLocation(FVector TargetLocation)
 	}
 }
 
+void AFlameBeast::ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower)
+{
+	
+
+	Super::ReceiveDamage_Implementation(_value, _bApplyLaunch, _hitDirection, _hitPower);
+}
+
 void AFlameBeast::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

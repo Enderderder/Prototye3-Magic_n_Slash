@@ -52,6 +52,9 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Combat | Range")
 	void LaunchFireBallToLocation(FVector TargetLocation);
 
+	// Called when the enemy takes damage
+	virtual void ReceiveDamage_Implementation(float _value, bool _bApplyLaunch, FVector _hitDirection, float _hitPower) override;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
