@@ -3,7 +3,7 @@
 #include "GodaiGamemode.h"
 
 #include "Kismet/GameplayStatics.h"
-#include "Engine/Engine.h"
+#include "Engine.h"
 
 #include "SimpleCheckPoint.h"
 
@@ -24,19 +24,13 @@ void AGodaiGamemode::PlaceCheckPointAndSort(TArray<AActor*> _inArray)
 		return A.CheckPointIndex < B.CheckPointIndex;
 	});
 
-	for (ASimpleCheckPoint* obj : CheckPoints)
-	{
-		//FString text = obj->CheckPointIndex.ToString();
-
-		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, text);
-	}
-
-
 }
 
 void AGodaiGamemode::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CurrentCheckPointIndex = 0;
 
 	TArray<AActor*> ResultArray;
 	UGameplayStatics::GetAllActorsOfClass(this, ASimpleCheckPoint::StaticClass(), ResultArray);

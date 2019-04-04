@@ -24,13 +24,12 @@ public:
 	AGodaiGamemode();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CheckPoint")
-	int CurrentCheckPointIndex;
+	int32 CurrentCheckPointIndex;
 
 protected:
 
 	// Called after find all the check points, sort it
 	void PlaceCheckPointAndSort(TArray<AActor*> _inArray);
-
 
 public:
 

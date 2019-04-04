@@ -21,6 +21,8 @@ AEnemyBase::AEnemyBase()
 	HealthIndicator->SetupAttachment(RootComponent);
 	HealthIndicator->SetGenerateOverlapEvents(false);
 	HealthIndicator->SetWidgetSpace(EWidgetSpace::Screen);
+	HealthIndicator->SetDrawSize(FVector2D(100.0f, 5.0f));
+	HealthIndicator->SetVisibility(false);
 
 }
 
@@ -64,8 +66,7 @@ void AEnemyBase::GetPerceptionLocRot_Implementation(FVector& Location, FRotator&
 
 void AEnemyBase::KillObject()
 {
-
-
+	bAlive = false;
 
 	Receive_OnObjectKilled();
 }

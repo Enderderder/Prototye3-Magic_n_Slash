@@ -27,7 +27,10 @@ public:
 	ASimpleCheckPoint();
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Instance Config")
-	int CheckPointIndex;
+	int32 CheckPointIndex;
+
+// 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "State")
+// 	bool bAvaliable;
 
 protected:
 	// Called when the game starts or when spawned
@@ -35,7 +38,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	virtual void OnCheckPointTriggered(class APlayerCharacter* _player);
-	UFUNCTION(BlueprintImplementableEvent, Category = "CheckPoint", meta = (DisplayName = "OnCheckPointTriggered"))
+	UFUNCTION(BlueprintImplementableEvent, Category = "CheckPoint", meta = (DisplayName = "OnCheckPointTriggeredSuccess"))
 	void Receive_OnCheckPointTriggered(class APlayerCharacter* _player);
 
 public:	
